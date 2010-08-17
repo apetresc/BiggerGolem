@@ -1,6 +1,6 @@
 {
     "name": "Bigger Golem",
-    "version": "0.4",
+    "version": "0.6",
     "description": "An extension to enhance the Little Golem experience.",
     "background_page": "background.html",
     "options_page": "options.html",
