@@ -1,0 +1,12 @@
+<html>
+    <script>
+    chrome.extension.onRequest.addListener(
+    function(request, sender, sendResponse) {
+        if (request.localstorage == "style")
+            sendResponse({style: localStorage.style});
+        else
+            sendResponse({});
+    }
+);
+    </script>
+</html>

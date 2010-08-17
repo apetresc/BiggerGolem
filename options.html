@@ -1,0 +1,49 @@
+<html>
+<head><title>BiggerGolem Options</title></head>
+<script type="text/javascript">
+    // Saves options to localStorage.
+    function save_options() {
+        var select = document.getElementById("style");
+        var style = select.children[select.selectedIndex].value;
+        localStorage["style"] = style;
+
+        // Update status to let user know options were saved.
+        var status = document.getElementById("status");
+        status.innerHTML = "Options saved.";
+        setTimeout(function() {
+            status.innerHTML = "";
+        }, 750);
+    }
+
+    // Restores select box state to saved value from localStorage.
+    function restore_options() {
+        var selected_style = localStorage["style"];
+        if (!selected_style) {
+            return;
+        }
+        var select = document.getElementById("style");
+        for (var i = 0; i < select.children.length; i++) {
+            var child = select.children[i];
+            if (child.value == selected_style) {
+                child.selected = "true";
+                break;
+            }
+        }
+    }
+
+</script>
+
+<body onload="restore_options()">
+
+    Shogi Piece Style:
+    <select id="style">
+        <option value="default">Default</option>
+        <option value="Ryoko">Ryoko</option>
+        <option value="Kinki">Kinki</option>
+    </select>
+
+    <br>
+    <div id="status"> </div> <br>
+    <button onclick="save_options()">Save</button>
+</body>
+</html>
