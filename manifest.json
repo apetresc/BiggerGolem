@@ -1,6 +1,6 @@
 {
     "name": "Bigger Golem",
-    "version": "0.6",
+    "version": "0.7",
     "description": "An extension to enhance the Little Golem experience.",
     "background_page": "background.html",
     "options_page": "options.html",
@@ -10,7 +10,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["http://www.littlegolem.net/jsp/game/game.jsp?gid=*"],
+            "matches": ["http://www.littlegolem.net/jsp/game/game.jsp*"],
             "js": ["lib/jquery.js", "src/shogi_piece_set.js"],
             "run_at": "document_end"
         }
