@@ -6,6 +6,13 @@
         "default_icon": "icon.png",
         "popup": "popup.html"
     },
+    "content_scripts": [
+        {
+            "matches": ["http://www.littlegolem.net/jsp/game/game.jsp?gid=*"],
+            "js": ["lib/jquery.js", "src/shogi_piece_set.js"],
+            "run_at": "document_end"
+        }
+    ],
     "permissions": [
         "http://littlegolem.net/",
         "http://api.flickr.com/"
