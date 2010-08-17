@@ -27,7 +27,6 @@ function set_style(style) {
 set_style("blank");
 chrome.extension.sendRequest({localstorage: "style"},
                              function(response) {
-                                if (response.style == undefined) response.style = "default";
                                 set_style(response.style);
                                 wait_for_response = false;
                              });

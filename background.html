@@ -1,5 +1,9 @@
 <html>
     <script>
+    // Set default values
+    if (localStorage.style == undefined) localStorage.style = "default";
+
+    // Add localStorage request handler
     chrome.extension.onRequest.addListener(
     function(request, sender, sendResponse) {
         if (request.localstorage == "style")
