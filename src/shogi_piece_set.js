@@ -1,6 +1,4 @@
-alert("Hello world!");
-
-var game_name = $("table:eq(5)>tbody>tr>td>font>b").text();
+var game_name = $("body>table:nth-child(3)>tbody>tr>td>font>b").text();
 
 if (game_name.match("Shogi-Shogi") == null) {
     alert("Not shogi");
