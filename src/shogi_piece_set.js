@@ -1,15 +1,14 @@
 var game_name = $("body>table:nth-child(3)>tbody>tr>td>font>b").text();
 var style = "blank";
-var wait_for_response = true;
 
 function set_style(style) {
     if (game_name.indexOf("Shogi") >= 0) {
         var divs = $("div");
         for (var i = 0; i < divs.length; i++) {
-            var piece_pos = divs[i].style.backgroundImage.search(/shogi\d\d\.png/);
+            var piece_pos = divs[i].style.backgroundImage.search(/shogi\d\d/);
             if (piece_pos >= 0) {
                 if (style == "blank") {
-                    divs[i].style.backgroundImage = "shogi00.png";
+                    divs[i].style.backgroundImage = "/*" + divs[i].style.backgroundImage.substr(piece_pos, 7) + "*/";
                     divs[i].style.visibility = "hidden";
                 } else {
                     var piece = divs[i].style.backgroundImage.substr(piece_pos, 7);
@@ -21,6 +20,26 @@ function set_style(style) {
                 }
             }
         }
+
+        // Might also be a promotion box.
+        if ($("body>table:nth-child(3) div").length == 43) {
+            promotion_pieces = $("body>table:nth-child(3) div:eq(41)>img");
+            for (var i = 0; i < promotion_pieces.length; i++) {
+                if (style == "blank") {
+                    var piece_pos = promotion_pieces[i].src.search(/shogi\d\d/);
+                    promotion_pieces[i].className = promotion_pieces[i].src.substr(piece_pos, 7);
+                    //promotion_pieces[i].removeAttribute("src");
+                    promotion_pieces[i].style.visibility = "hidden";
+                } else {
+                    var piece = promotion_pieces[i].className;
+                    if (piece == undefined || piece == "") { piece = promotion_pieces[i].src.substr(promotion_pieces[i].src.search(/shogi\d\d/), 7); }
+                    if (style != "default") {
+                        promotion_pieces[i].src = "url(" + chrome.extension.getURL("img/shogi/kanji/" + style + "/" + piece + ".png") + ")";
+                    }
+                    promotion_pieces[i].style.visibility = "visible";
+                }
+            }
+        }
     }
 }
 
@@ -28,5 +47,4 @@ set_style("blank");
 chrome.extension.sendRequest({localstorage: "style"},
                              function(response) {
                                 set_style(response.style);
-                                wait_for_response = false;
                              });
