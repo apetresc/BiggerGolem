@@ -2,12 +2,16 @@
     <script>
     // Set default values
     if (localStorage.style == undefined) localStorage.style = "default";
+    if (localStorage.background == undefined) localStorage.background = false;
+    if (localStorage.go == undefined) localStorage.go = false;
 
     // Add localStorage request handler
     chrome.extension.onRequest.addListener(
     function(request, sender, sendResponse) {
         if (request.localstorage == "style")
-            sendResponse({style: localStorage.style});
+	    sendResponse({style: localStorage.style});
+	else if (request.localstorage == "reversiStyle")
+	    sendResponse({green: localStorage.background, go: localStorage.go});
         else
             sendResponse({});
     }

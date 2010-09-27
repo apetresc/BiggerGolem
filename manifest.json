@@ -11,7 +11,8 @@
     "content_scripts": [
         {
             "matches": ["http://www.littlegolem.net/jsp/game/game.jsp*"],
-            "js": ["lib/jquery.js", "src/shogi_piece_set.js"],
+            "js": ["lib/jquery.js", "src/shogi_piece_set.js",
+                   "src/reversi_style.js", "src/requests.js"],
             "run_at": "document_end"
         }
     ],

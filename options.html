@@ -1,15 +1,19 @@
 <html>
-<head><title>BiggerGolem Options</title></head>
+<head><title>BiggerGolem Options</title>
 <script type="text/javascript">
     // Saves options to localStorage.
     function save_options() {
         var select = document.getElementById("style");
         var style = select.children[select.selectedIndex].value;
-        localStorage["style"] = style;
+	localStorage["style"] = style;
+
+	var reversiOpts = document.getElementById("reversi");
+	localStorage["background"] = reversiOpts.green.checked;
+	localStorage["go"] = reversiOpts.go.checked;
 
         // Update status to let user know options were saved.
         var status = document.getElementById("status");
-        status.innerHTML = "Options saved.";
+	status.innerHTML = "Options saved.";
         setTimeout(function() {
             status.innerHTML = "";
         }, 750);
@@ -17,7 +21,9 @@
 
     // Restores select box state to saved value from localStorage.
     function restore_options() {
-        var selected_style = localStorage["style"];
+	var selected_style = localStorage["style"];
+	var selected_reversiGreen = localStorage["background"];
+	var selected_reversiGo = localStorage["go"];
         if (!selected_style) {
             return;
         }
@@ -28,21 +34,33 @@
                 child.selected = "true";
                 break;
             }
-        }
+	}
+	var reversiOpts = document.getElementById("reversi");
+	if (selected_reversiGreen == "true") reversiOpts.green.checked = true;
+	if (selected_reversiGo == "true") reversiOpts.go.checked = true;
     }
 
 </script>
+</head>
 
 <body onload="restore_options()">
 
-    Shogi Piece Style:
-    <select id="style">
-        <option value="default">Default</option>
-        <option value="Ryoko">Ryoko</option>
-        <option value="Kinki">Kinki</option>
-    </select>
+    <fieldset>
+	<legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Shogi Piece Set</legend>
+	<select id="style">
+	    <option value="default">Default</option>
+	    <option value="Ryoko">Ryoko</option>
+	    <option value="Kinki">Kinki</option>
+	</select>
+    </fieldset><br>
 
-    <br>
+    <fieldset>
+	<legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Reversi Board Options</legend>
+	<form id="reversi">
+	    <input type="checkbox" name="green" /><label for="green">Green background</label>
+	    <input type="checkbox" name="go" /><label for="go">Use Go stones</label>
+	</form>
+    </fieldset>
     <div id="status"> </div> <br>
     <button onclick="save_options()">Save</button>
 </body>
