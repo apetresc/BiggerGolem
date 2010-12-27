@@ -1,4 +1,5 @@
 <html>
+    <script src="lib/jquery.js"></script>
     <script>
     // Set default values
     if (localStorage.style == undefined) localStorage.style = "default";
@@ -16,5 +17,23 @@
             sendResponse({});
     }
 );
+
+    var setBadge = function(data) {
+        var badgeText = '';
+        var page = $(data);
+        var gameElement = $("a:contains('Your games:')",page).parent().next().children().first().html();
+        if (gameElement) {
+            var gamesNumbers = gameElement.split('/');
+            badgeText = ''+gamesNumbers[0];
+        }
+        chrome.browserAction.setBadgeText({text: badgeText});
+    }
+
+    var checkLittleGolem = function() {
+        $.get('http://www.littlegolem.net/jsp/game/index.jsp', setBadge);
+    }
+
+    setInterval(checkLittleGolem, 30000);
+    checkLittleGolem();
     </script>
 </html>

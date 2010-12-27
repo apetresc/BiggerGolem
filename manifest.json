@@ -20,6 +20,7 @@
                "48":  "img/icons/golem48.png",
                "128": "img/icons/golem128.png" },
     "permissions": [
-        "http://littlegolem.net/"
+        "http://littlegolem.net/",
+        "http://www.littlegolem.net/"
     ]
 }
