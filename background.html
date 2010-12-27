@@ -20,6 +20,12 @@
     }
 );
 
+    chrome.browserAction.onClicked.addListener(
+    function(tab) {
+        window.open('http://www.littlegolem.net/jsp/game/index.jsp', '_newtab');
+    }
+);
+
     var setBadge = function(data) {
         var badgeText = '';
         var page = $(data);
