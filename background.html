@@ -13,6 +13,8 @@
 	    sendResponse({style: localStorage.style});
 	else if (request.localstorage == "reversiStyle")
 	    sendResponse({green: localStorage.background, go: localStorage.go});
+        else if (request.localstorage == "badgeUpdate")
+            setBadge(request.data);
         else
             sendResponse({});
     }

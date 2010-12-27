@@ -14,3 +14,5 @@ if (game_name.indexOf("Shogi") >= 0) {
 			set_style(response.style);
 		});
 }
+
+chrome.extension.sendRequest({localstorage: "badgeUpdate", data: $("body").html()});
