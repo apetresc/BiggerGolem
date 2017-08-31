@@ -1,25 +1,30 @@
 {
     "name": "Bigger Golem",
+    "manifest_version": 2,
     "version": "1.2.1",
     "description": "An extension to enhance the Little Golem experience.",
-    "background_page": "background.html",
+    "background": { 
+        "page" : "background.html" 
+    },
     "options_page": "options.html",
     "browser_action": {
         "default_icon": "img/icons/golem32.png"
     },
     "content_scripts": [
         {
-            "matches": ["http://www.littlegolem.net/jsp/game/*"],
-            "js": ["lib/jquery.js", "src/shogi_piece_set.js",
-                   "src/reversi_style.js", "src/requests.js"],
+            "matches": ["https://www.littlegolem.net/jsp/game/*"],
+            "js": ["lib/jquery-3.2.1.min.js", "src/shogi_piece_set.js",
+                   "src/reversi_style.js", "src/requests.js", "src/options.js",
+                   "src/go_style.js"],
             "run_at": "document_end"
         }
     ],
+    "web_accessible_resources": ["img/*"],
     "icons": { "16":  "img/icons/golem16.png",
                "48":  "img/icons/golem48.png",
                "128": "img/icons/golem128.png" },
     "permissions": [
-        "http://littlegolem.net/",
-        "http://www.littlegolem.net/"
+        "https://littlegolem.net/",
+        "https://www.littlegolem.net/"
     ]
 }

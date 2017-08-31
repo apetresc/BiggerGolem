@@ -1,5 +1,5 @@
 function set_reversi_style(green,go) {
-    var lastMove = $("table[bordercolor] td[bgcolor='#FF9115']");
+	var lastMove = $("table[bordercolor] td[bgcolor='#FF9115']");
     var lastMoveImg = $("table[bordercolor] td[bgcolor='#FF9115'] img");
     if (green == "true") {
 	if (lastMove.length) lastMove[0].style.backgroundColor = "#00EE00";

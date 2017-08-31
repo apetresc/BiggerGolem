@@ -1,49 +1,10 @@
 <html>
-    <script src="lib/jquery.js"></script>
-    <script>
-    // Set default values
-    if (localStorage.style == undefined) localStorage.style = "default";
-    if (localStorage.background == undefined) localStorage.background = false;
-    if (localStorage.go == undefined) localStorage.go = false;
 
-    // Add localStorage request handler
-    chrome.extension.onRequest.addListener(
-    function(request, sender, sendResponse) {
-        if (request.localstorage == "style")
-	    sendResponse({style: localStorage.style});
-	else if (request.localstorage == "reversiStyle")
-	    sendResponse({green: localStorage.background, go: localStorage.go});
-        else if (request.localstorage == "badgeUpdate")
-            setBadge(request.data);
-        else
-            sendResponse({});
-    }
-);
+<head></head>
 
-    chrome.browserAction.onClicked.addListener(
-    function(tab) {
-        window.open('http://www.littlegolem.net/jsp/game/index.jsp', '_newtab');
-    }
-);
+<body>
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="background.js"></script>
+</body>
 
-    var setBadge = function(data) {
-        var badgeText = '';
-        var page = $(data);
-        var gameElement = $("a:contains('Your games:')",page).parent().next().children().first().html();
-        if (gameElement) {
-            var gamesNumbers = gameElement.split('/');
-            if(parseInt(gamesNumbers[0], 10) > 0) {
-                badgeText = gamesNumbers[0];
-            }
-        }
-        chrome.browserAction.setBadgeText({text: badgeText});
-    }
-
-    var checkLittleGolem = function() {
-        $.get('http://www.littlegolem.net/jsp/game/index.jsp', setBadge);
-    }
-
-    setInterval(checkLittleGolem, 30000);
-    checkLittleGolem();
-    </script>
 </html>
