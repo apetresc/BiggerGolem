@@ -15,7 +15,7 @@
             "matches": ["https://www.littlegolem.net/jsp/game/*"],
             "js": ["lib/jquery-3.2.1.min.js", "src/shogi_piece_set.js",
                    "src/reversi_style.js", "src/requests.js", "src/options.js",
-                   "src/go_style.js"],
+                   "src/go_style.js", "src/chess_style.js"],
             "run_at": "document_end"
         }
     ],

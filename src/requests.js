@@ -38,4 +38,11 @@ if (game_name.indexOf("Go") >= 0) {
 	}
 }
 
+if (game_name.indexOf("Chess") >= 0) {
+  chrome.runtime.sendMessage({ localstorage: "style" },
+    function (response) {
+      chess_resize('64');
+    });
+}
+
 chrome.runtime.sendMessage({ localstorage: "badgeUpdate", data: $("body").html() });
