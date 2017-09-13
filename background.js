@@ -26,6 +26,7 @@ chrome.browserAction.onClicked.addListener(
 );
 
 var setBadge = function (data) {
+    data = data.replace(/<img[^>]*>/g,"");
     var badgeText = '';
     var page = $(data);
     var badgeText = parseInt($("a.dropdown-toggle i.fa-cubes", page).next().html())
