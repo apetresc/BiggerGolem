@@ -1,3 +1,4 @@
+
 function set_style(style) {
     var divs = $("div");
     for (var i = 0; i < divs.length; i++) {

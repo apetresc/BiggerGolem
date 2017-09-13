@@ -1,53 +1,13 @@
 <html>
-<head><title>BiggerGolem Options</title>
-<script type="text/javascript">
-    // Saves options to localStorage.
-    function save_options() {
-        var select = document.getElementById("style");
-        var style = select.children[select.selectedIndex].value;
-	localStorage["style"] = style;
 
-	var reversiOpts = document.getElementById("reversi");
-	localStorage["background"] = reversiOpts.green.checked;
-	localStorage["go"] = reversiOpts.go.checked;
-
-        // Update status to let user know options were saved.
-        var status = document.getElementById("status");
-	status.innerHTML = "Options saved.";
-        setTimeout(function() {
-            status.innerHTML = "";
-        }, 750);
-    }
-
-    // Restores select box state to saved value from localStorage.
-    function restore_options() {
-	var selected_style = localStorage["style"];
-	var selected_reversiGreen = localStorage["background"];
-	var selected_reversiGo = localStorage["go"];
-        if (!selected_style) {
-            return;
-        }
-        var select = document.getElementById("style");
-        for (var i = 0; i < select.children.length; i++) {
-            var child = select.children[i];
-            if (child.value == selected_style) {
-                child.selected = "true";
-                break;
-            }
-	}
-	var reversiOpts = document.getElementById("reversi");
-	if (selected_reversiGreen == "true") reversiOpts.green.checked = true;
-	if (selected_reversiGo == "true") reversiOpts.go.checked = true;
-    }
-
-</script>
+<head>
+    <title>BiggerGolem Options</title>
 </head>
 
-<body onload="restore_options()">
-
+<body>
     <fieldset>
-	<legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Shogi Piece Set</legend>
-	<select id="style">
+        <legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Shogi Piece Set</legend>
+        <select id="style">
 	    <option value="default">Default</option>
 	    <option value="Ryoko">Ryoko</option>
 	    <option value="Kinki">Kinki</option>
@@ -55,13 +15,23 @@
     </fieldset><br>
 
     <fieldset>
-	<legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Reversi Board Options</legend>
-	<form id="reversi">
-	    <input type="checkbox" name="green" /><label for="green">Green background</label>
-	    <input type="checkbox" name="go" /><label for="go">Use Go stones</label>
-	</form>
+        <legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Reversi Board Options</legend>
+        <form id="reversi">
+            <input type="checkbox" name="green" /><label for="green">Green background</label>
+            <input type="checkbox" name="go" /><label for="go">Use Go stones</label>
+        </form>
     </fieldset>
+
+    <fieldset>
+        <legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Go Board Options</legend>
+        <form id="go">
+            <input type="checkbox" name="coordinates" /><label for="coordinates">Show coordinates</label>
+        </form>
+    </fieldset>
+
     <div id="status"> </div> <br>
-    <button onclick="save_options()">Save</button>
+    <button id="save-options">Save</button>
 </body>
+<script src="/src/options.js"></script>
+
 </html>
