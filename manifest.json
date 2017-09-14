@@ -1,7 +1,7 @@
 {
     "name": "Bigger Golem",
     "manifest_version": 2,
-    "version": "1.4.0",
+    "version": "1.4.1",
     "description": "An extension to enhance the Little Golem experience.",
     "background": {
         "page" : "background.html"
@@ -25,6 +25,8 @@
                "128": "img/icons/golem128.png" },
     "permissions": [
         "https://littlegolem.net/",
-        "https://www.littlegolem.net/"
+        "https://www.littlegolem.net/",
+        "http://littlegolem.net/",
+        "http://www.littlegolem.net/"
     ]
 }
