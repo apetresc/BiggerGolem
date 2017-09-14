@@ -8,6 +8,8 @@ chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         if (request.localstorage == "style")
             sendResponse({ style: localStorage.style });
+        else if (request.localstorage == "chess-style")
+            sendResponse({ chess_pieces: localStorage.chess_pieces, chess_size: localStorage.chess_size});
         else if (request.localstorage == "reversiStyle")
             sendResponse({ green: localStorage.background, go: localStorage.go });
         else if (request.localstorage == "go-coordinates")

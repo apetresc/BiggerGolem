@@ -8,10 +8,6 @@ if (game_name.indexOf("Reversi") >= 0) {
 		});
 }
 
-//chrome.runtime.sendMessage(string extensionId, any message, object options, function responseCallback)
-//chrome.extension.sendRequest(string extensionId, any request, function responseCallback)
-
-
 if (game_name.indexOf("Shogi") >= 0) {
 	set_style("blank");
 	chrome.runtime.sendMessage({ localstorage: "style" },
@@ -36,6 +32,14 @@ if (game_name.indexOf("Go") >= 0) {
 				set_go_coordinates(response.setCoordinates, response.size)
 			});
 	}
+}
+
+if (game_name.indexOf("Chess") >= 0) {
+  chess_blank();
+  chrome.runtime.sendMessage({ localstorage: "chess-style" },
+    function (response) {
+      chess_style(response.chess_pieces, response.chess_size);
+    });
 }
 
 chrome.runtime.sendMessage({ localstorage: "badgeUpdate", data: $("body").html() });

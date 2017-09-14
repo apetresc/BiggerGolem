@@ -1,7 +1,7 @@
 {
     "name": "Bigger Golem",
     "manifest_version": 2,
-    "version": "1.3.1",
+    "version": "1.4.0",
     "description": "An extension to enhance the Little Golem experience.",
     "background": {
         "page" : "background.html"
@@ -14,8 +14,8 @@
         {
             "matches": ["https://www.littlegolem.net/jsp/game/*"],
             "js": ["lib/jquery-3.2.1.min.js", "src/shogi_piece_set.js",
-                   "src/reversi_style.js", "src/requests.js", "src/options.js",
-                   "src/go_style.js"],
+                   "src/go_style.js", "src/chess_style.js",
+                   "src/reversi_style.js", "src/requests.js", "src/options.js"],
             "run_at": "document_end"
         }
     ],
