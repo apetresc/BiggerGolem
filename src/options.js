@@ -2,27 +2,30 @@
 function save_options() {
     var select = document.getElementById("style");
     var style = select.children[select.selectedIndex].value;
-    localStorage["style"] = style;
-
     var chess_pieces_select = document.getElementById("chess_pieces");
     var chess_pieces = chess_pieces_select.children[chess_pieces_select.selectedIndex].value;
-    localStorage["chess_pieces"] = chess_pieces;
-    localStorage["chess_size"] = document.getElementById("chess_size").value;
-
     var reversiOpts = document.getElementById("reversi");
-    localStorage["background"] = reversiOpts.green.checked;
-    localStorage["go"] = reversiOpts.go.checked;
-
     var goOpts = document.getElementById("go");
-    localStorage["goCoordinates"] = goOpts.coordinates.checked;
 
-    // Update status to let user know options were saved.
-    var status = document.getElementById("status");
-    status.innerHTML = "Options saved.";
-    setTimeout(function () {
+    chrome.storage.sync.set({
+      shogi_style: style,
+
+      chess_pieces: chess_pieces,
+      chess_size: document.getElementById("chess_size").value,
+
+      background: reversiOpts.green.checked,
+      go: reversiOpts.go.checked,
+
+      goCoordinates: goOpts.coordinates.checked
+    }, function() {
+      var status = document.getElementById("status");
+      status.innerHTML = "Options saved.";
+      setTimeout(function() {
         status.innerHTML = "";
-    }, 750);
+      }, 750);
+    });
 }
+
 
 // Restores select box state to saved value from localStorage.
 function restore_options() {
@@ -62,7 +65,8 @@ function restore_options() {
     var goOpts = document.getElementById("go");
     if (selected_goCoordinates == "true") goOpts.coordinates.checked = true
 }
+
 //eventhandler
 el = document.getElementById("save-options")
 if (el) el.addEventListener("click", save_options);
-restore_options();
+document.addEventListener('DOMContentLoaded', restore_options);
