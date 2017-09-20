@@ -1,4 +1,3 @@
-// Saves options to localStorage.
 function save_options() {
     var select = document.getElementById("style");
     var style = select.children[select.selectedIndex].value;
@@ -64,7 +63,6 @@ function restore_options() {
   });
 }
 
-//eventhandler
 el = document.getElementById("save-options")
 if (el) el.addEventListener("click", save_options);
 document.addEventListener("DOMContentLoaded", restore_options);

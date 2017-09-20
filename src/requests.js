@@ -38,4 +38,4 @@ if (game_name.indexOf("Reversi") >= 0) {
 		});
 }
 
-chrome.runtime.sendMessage({localstorage: "badgeUpdate", data: $("body").html()});
+chrome.runtime.sendMessage({action: "badgeUpdate", data: $("body").html()});
