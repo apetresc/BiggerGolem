@@ -1,6 +1,6 @@
 # Bigger Golem
 
-Bigger Golem is an extension that aims to bring a variety of improvements to the popular turn-based board game site Little Golem. At the moment, it supports the following features:
+Bigger Golem is an extension that aims to bring a variety of improvements to the popular turn-based board game site [Little Golem](https://www.littlegolem.net/). At the moment, it supports the following features:
 
 - Icon badge shows how many games it is your turn in (contributed by [xentac](https://github.com/xentac))
 - Configurable piece sets for Shogi
