@@ -8,7 +8,13 @@ chrome.runtime.onMessage.addListener(
 
 chrome.browserAction.onClicked.addListener(
     function (tab) {
-        window.open('https://www.littlegolem.net/jsp/game/index.jsp', '_newtab');
+        if (typeof browser == typeof undefined) {
+            window.open('https://www.littlegolem.net/jsp/game/index.jsp', '_newtab');
+        } else {
+            browser.tabs.create({
+              "url": "https://www.littlegolem.net/jsp/game/index.jsp"
+            });
+        }
     }
 );
 
