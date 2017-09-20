@@ -2,14 +2,14 @@
 var game_name = $('h3.page-title').text();
 
 if (game_name.indexOf("Reversi") >= 0) {
-	chrome.storage.sync.get({
+	chrome.storage.local.get({
 			"reversi_background": false,
 			"reversi_go": false
 		}, function(items) {
 			set_reversi_style(items.reversi_background, items.reversi_go);
 	});
 } else if (game_name.indexOf("Shogi") >= 0) {
-	chrome.storage.sync.get({
+	chrome.storage.local.get({
 			'shogi_style': 'default'
 		}, function(items) {
 			set_style(items.shogi_style);
@@ -24,13 +24,13 @@ if (game_name.indexOf("Reversi") >= 0) {
 		size = 9
 	}
 	if (size > 0) {
-		chrome.storage.sync.get({'go_coordinates': false}, function(items) {
+		chrome.storage.local.get({'go_coordinates': false}, function(items) {
 			set_go_coordinates(items.go_coordinates, size);
 		});
 	}
 } else if (game_name.indexOf("Chess") >= 0) {
 	chess_blank();
-	chrome.storage.sync.get({
+	chrome.storage.local.get({
 			'chess_pieces': 'default',
 			'chess_size': '32'
 		}, function(items) {

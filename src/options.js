@@ -6,7 +6,7 @@ function save_options() {
     var reversiOpts = document.getElementById("reversi");
     var goOpts = document.getElementById("go");
 
-    chrome.storage.sync.set({
+    chrome.storage.local.set({
       shogi_style: style,
 
       chess_pieces: chess_pieces,
@@ -27,7 +27,7 @@ function save_options() {
 
 
 function restore_options() {
-  chrome.storage.sync.get({
+  chrome.storage.local.get({
     shogi_style: "default",
     chess_pieces: "default",
     chess_size: "32",
