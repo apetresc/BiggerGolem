@@ -2,44 +2,40 @@
 var game_name = $('h3.page-title').text();
 
 if (game_name.indexOf("Reversi") >= 0) {
-	chrome.runtime.sendMessage({ localstorage: "reversiStyle" },
-		function (response) {
-			set_reversi_style(response.green, response.go);
-		});
-}
-
-if (game_name.indexOf("Shogi") >= 0) {
-	set_style("blank");
-	chrome.runtime.sendMessage({ localstorage: "style" },
-		function (response) {
-			set_style(response.style);
-		});
-}
-
-if (game_name.indexOf("Go") >= 0) {
+	chrome.storage.sync.get({
+			"reversi_background": false,
+			"reversi_go": false
+		}, function(items) {
+			set_reversi_style(items.reversi_background, items.reversi_go);
+	});
+} else if (game_name.indexOf("Shogi") >= 0) {
+	chrome.storage.sync.get({
+			'shogi_style': 'default'
+		}, function(items) {
+			set_style(items.shogi_style);
+	});
+} else if (game_name.indexOf("Go") >= 0) {
 	let size = 0;
 	if (game_name.indexOf("19x19") >= 0) {
 		size = 19
-	}
-	else if (game_name.indexOf("13x13") >= 0) {
+	} else if (game_name.indexOf("13x13") >= 0) {
 		size = 13
 	} else if (game_name.indexOf("9x9") >= 0) {
 		size = 9
 	}
 	if (size > 0) {
-		chrome.runtime.sendMessage({ localstorage: "go-coordinates", size: size },
-			function (response) {
-				set_go_coordinates(response.setCoordinates, response.size)
-			});
+		chrome.storage.sync.get({'go_coordinates': false}, function(items) {
+			set_go_coordinates(items.go_coordinates, size);
+		});
 	}
+} else if (game_name.indexOf("Chess") >= 0) {
+	chess_blank();
+	chrome.storage.sync.get({
+			'chess_pieces': 'default',
+			'chess_size': '32'
+		}, function(items) {
+			chess_style(items.chess_pieces, items.chess_size);
+		});
 }
 
-if (game_name.indexOf("Chess") >= 0) {
-  chess_blank();
-  chrome.runtime.sendMessage({ localstorage: "chess-style" },
-    function (response) {
-      chess_style(response.chess_pieces, response.chess_size);
-    });
-}
-
-chrome.runtime.sendMessage({ localstorage: "badgeUpdate", data: $("body").html() });
+chrome.runtime.sendMessage({localstorage: "badgeUpdate", data: $("body").html()});

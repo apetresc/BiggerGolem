@@ -13,10 +13,10 @@ function save_options() {
       chess_pieces: chess_pieces,
       chess_size: document.getElementById("chess_size").value,
 
-      background: reversiOpts.green.checked,
-      go: reversiOpts.go.checked,
+      reversei_background: reversiOpts.green.checked,
+      reversi_go: reversiOpts.go.checked,
 
-      goCoordinates: goOpts.coordinates.checked
+      go_coordinates: goOpts.coordinates.checked
     }, function() {
       var status = document.getElementById("status");
       status.innerHTML = "Options saved.";
@@ -27,22 +27,19 @@ function save_options() {
 }
 
 
-// Restores select box state to saved value from localStorage.
 function restore_options() {
-    var selected_style = localStorage["style"];
-    var selected_chess_pieces = localStorage["chess_pieces"];
-    var selected_chess_size = localStorage["chess_size"];
-    var selected_reversiGreen = localStorage["background"];
-    var selected_reversiGo = localStorage["go"];
-    var selected_goCoordinates = localStorage["goCoordinates"]
-
-    if (!selected_style) {
-        return;
-    }
+  chrome.storage.sync.get({
+    shogi_style: "default",
+    chess_pieces: "default",
+    chess_size: "32",
+    reversi_background: false,
+    reversi_go: false,
+    go_coordinates: false
+  }, function(items) {
     var select = document.getElementById("style");
     for (var i = 0; i < select.children.length; i++) {
         var child = select.children[i];
-        if (child.value == selected_style) {
+        if (child.value == items.shogi_style) {
             child.selected = "true";
             break;
         }
@@ -51,22 +48,23 @@ function restore_options() {
     var chess_pieces_select = document.getElementById("chess_pieces");
     for (var i = 0; i < chess_pieces_select.length; i++) {
       var child = chess_pieces_select.children[i];
-      if (child.value == selected_chess_pieces) {
+      if (child.value == items.chess_pieces) {
           child.selected = "true";
           break;
       }
     }
-    if (selected_chess_size) document.getElementById("chess_size").value = selected_chess_size;
+    document.getElementById("chess_size").value = items.chess_size;
 
     var reversiOpts = document.getElementById("reversi");
-    if (selected_reversiGreen == "true") reversiOpts.green.checked = true;
-    if (selected_reversiGo == "true") reversiOpts.go.checked = true;
+    reversiOpts.green.checked = items.reversi_background;
+    reversiOpts.go.checked = items.reversi_go;
 
     var goOpts = document.getElementById("go");
-    if (selected_goCoordinates == "true") goOpts.coordinates.checked = true
+    goOpts.coordinates.checked = items.go_coordinates;
+  });
 }
 
 //eventhandler
 el = document.getElementById("save-options")
 if (el) el.addEventListener("click", save_options);
-document.addEventListener('DOMContentLoaded', restore_options);
+document.addEventListener("DOMContentLoaded", restore_options);

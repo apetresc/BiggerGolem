@@ -1,5 +1,5 @@
 function set_go_coordinates(setCoordinates, size) {
-    if (setCoordinates == "true") {
+    if (setCoordinates) {
         let num_size = parseInt(size)
         if (!isNaN(num_size)) {
             $('table[style*="wood004"] tr').prepend(function (i, txt) { return '<td>&nbsp;' + (num_size - i) + '</td>' })
@@ -12,4 +12,3 @@ function set_go_coordinates(setCoordinates, size) {
         }
     }
 }
-
