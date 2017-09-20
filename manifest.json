@@ -3,8 +3,13 @@
     "manifest_version": 2,
     "version": "1.5.0",
     "description": "An extension to enhance the Little Golem experience.",
+    "applications": {
+      "gecko": {
+        "id": "BiggerGolem@apetre.sc"
+      }
+    },
     "background": {
-        "page" : "background.html"
+      "page" : "background.html"
     },
     "options_ui": {
       "page": "options.html",
@@ -28,9 +33,9 @@
                "128": "img/icons/golem128.png" },
     "permissions": [
         "storage",
-        "https://littlegolem.net/",
-        "https://www.littlegolem.net/",
-        "http://littlegolem.net/",
-        "http://www.littlegolem.net/"
+        "https://littlegolem.net/*",
+        "https://www.littlegolem.net/*",
+        "http://littlegolem.net/*",
+        "http://www.littlegolem.net/*"
     ]
 }
