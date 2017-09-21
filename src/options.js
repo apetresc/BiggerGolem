@@ -17,10 +17,9 @@ function save_options() {
 
       go_coordinates: goOpts.coordinates.checked
     }, function() {
-      var status = document.getElementById("status");
-      status.innerHTML = "Options saved.";
+      $('#status').text("Options saved.");
       setTimeout(function() {
-        status.innerHTML = "";
+        $('#status').text("");
       }, 750);
     });
 }
