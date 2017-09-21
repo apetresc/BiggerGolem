@@ -11,3 +11,14 @@ Bigger Golem is an extension that aims to bring a variety of improvements to the
 More features are under active development.
 
 This extension is entirely made by a fan of LG and is not officially associated with LG or Richard Malaschitz in any way.
+
+## Installation
+
+Bigger Golem runs on any recent version of Chrome and Firefox.
+  - [Chrome Web Store link](https://chrome.google.com/webstore/detail/bigger-golem/camnfciehjhogdibimnoghlbedligapl)
+  - [Mozilla Add-On Gallery link](https://addons.mozilla.org/en-US/firefox/addon/bigger-golem/)
+
+## Configuration
+
+  - On Chrome, you can access the configuration page by right-clicking the BiggerGolem icon and selecting "Options"
+  - On Firefox, you must visit `about:addons` and find Bigger Golem in the list of installed add-ons in order to access its configuration options (please fix this, Mozilla!)
