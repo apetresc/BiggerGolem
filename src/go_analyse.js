@@ -44,9 +44,10 @@ function toggleAnalyseMode() {
     $('button#analyse').toggleClass('blue').toggleClass('red')
     if (analyseMode) {
         $('table').hide()
-        $('table').parent().append('<div class="lg-board tenuki-board" data-include-coordinates="true"></div>')
+        $('table').parent().prepend('<div class="lg-board tenuki-board" data-include-coordinates="true"></div>')
+        $('.lg-board').parent().append('<div id="show-score" style="text-align: center;"></div>')
         var boardElement = document.querySelector(".tenuki-board");
-        game = new tenuki.Game({ element: boardElement, boardSize: boardSize });
+        game = new tenuki.Game({ element: boardElement, boardSize: boardSize, komi: 6.5 });
         if (moves) {
             playSGF()
         } else {
@@ -56,8 +57,18 @@ function toggleAnalyseMode() {
                 playSGF()
               });
         }
+        let btn = $('<button id="score" class="btn blue">Score</button>')
+        btn.click(function(){
+            game.pass()
+            game.pass()
+            let score = game.score()
+            $('#show-score').html('B: ' + score.black + ' - W: ' + score.white + '<br>Mark dead stones and press the score button again to update')
+        })
+        $('i.fa-fast-backward').closest('div').append(btn)
     } else {
         $('div.tenuki-board').remove()
+        $('button#score').remove()
+        $('#show-score').html('')
         $('table').show()
     }
 }
