@@ -1,8 +1,9 @@
 var analyseMode = false
 var game, moves;
-
-function go_analyse() {
+var boardSize
+function go_analyse(size) {
     $('body').prepend('<style> .lg-board {width: ' + $('table').width() +'px;} </style>')
+    boardSize = size
     let btn = $('<button id="analyse" class="btn blue">Analyse</button>')
     btn.click(function(){
         toggleAnalyseMode()
@@ -45,7 +46,7 @@ function toggleAnalyseMode() {
         $('table').hide()
         $('table').parent().append('<div class="lg-board tenuki-board" data-include-coordinates="true"></div>')
         var boardElement = document.querySelector(".tenuki-board");
-        game = new tenuki.Game({ element: boardElement });
+        game = new tenuki.Game({ element: boardElement, boardSize: boardSize });
         if (moves) {
             playSGF()
         } else {
