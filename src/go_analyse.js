@@ -1,6 +1,7 @@
 var analyseMode = false
 var game, moves;
-var boardSize
+var boardSize;
+var handicap = 0;
 function go_analyse(size) {
     $('body').prepend('<style> .lg-board {width: ' + $('table').width() +'px;} </style>')
     boardSize = size
@@ -29,6 +30,11 @@ function characterToCoordinate(c) {
 }
 
 function playSGF() {
+    var boardElement = document.querySelector(".tenuki-board");
+    game = new tenuki.Game({ element: boardElement, 
+        boardSize: boardSize, 
+        komi: 6.5,
+        handicapStones: handicap });
     for (i=0;i<moves.length; i++) {
         if (moves[i].substr(2,2) == 'tt') {
             game.pass()
@@ -46,14 +52,14 @@ function toggleAnalyseMode() {
         $('table').hide()
         $('table').parent().prepend('<div class="lg-board tenuki-board" data-include-coordinates="true"></div>')
         $('.lg-board').parent().append('<div id="show-score" style="text-align: center;"></div>')
-        var boardElement = document.querySelector(".tenuki-board");
-        game = new tenuki.Game({ element: boardElement, boardSize: boardSize, komi: 6.5 });
         if (moves) {
             playSGF()
         } else {
             var sgffile = $('div.actions a').attr('href')
             $.get( sgffile, function( data ) {
                 moves = data.match(/[B|W]\[(..)\]/g);
+                let h = data.match(/HA\[(.)\]/)        
+                if (h != null)  handicap = parseInt(data.match(/HA\[(.)\]/)[1])
                 playSGF()
               });
         }
