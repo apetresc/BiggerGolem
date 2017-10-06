@@ -24,6 +24,7 @@ if (game_name.indexOf("Reversi") >= 0) {
 		size = 9
 	}
 	if (size > 0) {
+		go_analyse(size)
 		chrome.storage.local.get({'go_coordinates': false}, function(items) {
 			set_go_coordinates(items.go_coordinates, size);
 		});
