@@ -1,7 +1,7 @@
-LittleGolem.zip: manifest.json
-	zip -r LittleGolem.zip * -x Makefile .git/ .gitignore
+BiggerGolem.zip: manifest.json
+	zip -r BiggerGolem.zip * -x Makefile .git/ .gitignore
 
-all: LittleGolem.zip
+all: BiggerGolem.zip
 
 clean:
-	rm LittleGolem.zip
+	rm BiggerGolem.zip
