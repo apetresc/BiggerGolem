@@ -21,7 +21,7 @@
     "content_scripts": [
         {
             "matches": ["*://*.littlegolem.net/jsp/game/*"],
-            "js": ["lib/jquery-3.2.1.min.js", "src/shogi_piece_set.js",
+            "js": ["lib/jquery-3.2.1.min.js", "src/shogi_piece_set.js","src/xiangqi_piece_set.js",
                    "src/go_style.js", "src/chess_style.js",
                    "src/reversi_style.js", "src/requests.js", "src/options.js"],
             "run_at": "document_end"

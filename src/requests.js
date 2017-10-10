@@ -14,6 +14,12 @@ if (game_name.indexOf("Reversi") >= 0) {
 		}, function(items) {
 			set_style(items.shogi_style);
 	});
+} else if (game_name.indexOf("Xiangqi") >= 0) {
+	chrome.storage.local.get({
+			'xiangqi_style': 'western'
+		}, function(items) {
+			set_style(items.xiangqi_style);
+	});
 } else if (game_name.indexOf("Go") >= 0) {
 	let size = 0;
 	if (game_name.indexOf("19x19") >= 0) {
