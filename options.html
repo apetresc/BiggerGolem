@@ -47,8 +47,16 @@
     <fieldset>
         <legend>Reversi Board Options</legend>
         <form id="reversi">
+            <label>Pieces:
+                <select name="pieces">
+                    <option value="default">Default</option>
+                    <option value="go">Go pieces</option>
+                    <option value="svg">SVG</option>
+                </select>
+            </label>
+            <label>Size: <input type="text" name="size" value="32" size="2" /></label>
+            <br />
             <label><input type="checkbox" name="green" />Green background</label>
-            <label><input type="checkbox" name="go" />Use Go stones</label>
         </form>
     </fieldset>
 

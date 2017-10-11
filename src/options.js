@@ -12,8 +12,11 @@ function save_options() {
       chess_pieces: chess_pieces,
       chess_size: document.getElementById("chess_size").value,
 
-      reversi_background: reversiOpts.green.checked,
-      reversi_go: reversiOpts.go.checked,
+      reversi: {
+        background: reversiOpts.green.checked,
+        pieces: reversiOpts.pieces.value,
+        size: reversiOpts.size.value
+      },
 
       go_coordinates: goOpts.coordinates.checked
     }, function() {
@@ -30,8 +33,11 @@ function restore_options() {
     shogi_style: "default",
     chess_pieces: "default",
     chess_size: "32",
-    reversi_background: false,
-    reversi_go: false,
+    reversi: {
+      background: false,
+      pieces: "default",
+      size: "32"
+    },
     go_coordinates: false
   }, function(items) {
     var select = document.getElementById("style");
@@ -54,8 +60,12 @@ function restore_options() {
     document.getElementById("chess_size").value = items.chess_size;
 
     var reversiOpts = document.getElementById("reversi");
-    reversiOpts.green.checked = items.reversi_background;
-    reversiOpts.go.checked = items.reversi_go;
+    reversiOpts.green.checked = items.reversi.background;
+    reversiOpts.size.value = items.reversi.size;
+    const reversiPieceOption = Array.prototype.find.call(reversiOpts.pieces, function(option) {
+      return option.value === items.reversi.pieces;
+    });
+    reversiPieceOption.selected = true;
 
     var goOpts = document.getElementById("go");
     goOpts.coordinates.checked = items.go_coordinates;
