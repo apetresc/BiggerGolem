@@ -12,7 +12,7 @@ function save_options() {
       chess_pieces: chess_pieces,
       chess_size: document.getElementById("chess_size").value,
 
-      reversei_background: reversiOpts.green.checked,
+      reversi_background: reversiOpts.green.checked,
       reversi_go: reversiOpts.go.checked,
 
       go_coordinates: goOpts.coordinates.checked
