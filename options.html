@@ -3,12 +3,30 @@
 <head>
     <title>BiggerGolem Options</title>
     <meta charset="utf-8" />
+    <style>
+      form {
+        margin: 0;
+      }
+      fieldset {
+        margin-bottom: 1em;
+        padding: .8em .8em 1em;
+      }
+      legend {
+        font-size: .8em;
+        font-weight: bold;
+        background: #ccc;
+      }
+      #status {
+        margin-left: 1em;
+        font-size: 1.2em;
+      }
+    </style>
 </head>
 
 <body>
     <script src="lib/jquery-3.2.1.min.js"></script>
     <fieldset>
-        <legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Shogi Piece Set</legend>
+        <legend>Shogi Piece Set</legend>
         <select id="style">
 	    <option value="default">Default</option>
 	    <option value="Ryoko">Ryoko</option>
@@ -17,7 +35,7 @@
     </fieldset>
 
     <fieldset>
-        <legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Chess Piece Set</legend>
+        <legend>Chess Piece Set</legend>
         <select id="chess_pieces">
 	    <option value="default">Default</option>
 	    <option value="alpha">Alpha</option>
@@ -27,22 +45,29 @@
     </fieldset>
 
     <fieldset>
-        <legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Reversi Board Options</legend>
+        <legend>Reversi Board Options</legend>
         <form id="reversi">
-            <input type="checkbox" name="green" /><label for="green">Green background</label>
-            <input type="checkbox" name="go" /><label for="go">Use Go stones</label>
+            <label>Pieces:
+                <select name="pieces">
+                    <option value="default">Default</option>
+                    <option value="go">Go pieces</option>
+                    <option value="svg">SVG</option>
+                </select>
+            </label>
+            <label>Size: <input type="text" name="size" value="32" size="2" /></label>
+            <br />
+            <label><input type="checkbox" name="green" />Green background</label>
         </form>
     </fieldset>
 
     <fieldset>
-        <legend style="font-size:0.8em;font-weight:bold;background:#CCCCCC">Go Board Options</legend>
+        <legend>Go Board Options</legend>
         <form id="go">
-            <input type="checkbox" name="coordinates" /><label for="coordinates">Show coordinates</label>
+          <label><input type="checkbox" name="coordinates" />Show coordinates</label>
         </form>
     </fieldset>
 
-    <div id="status"> </div> <br>
-    <button id="save-options">Save</button>
+    <button id="save-options">Save</button><span id="status"></span>
 </body>
 <script src="/src/options.js"></script>
 
