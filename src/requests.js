@@ -37,6 +37,8 @@ if (game_name.indexOf("Reversi") >= 0) {
   }, function(items) {
     chess_style(items.chess_pieces, items.chess_size);
   });
+} else if (game_name.indexOf("Hex") >= 0) {
+  fixBrokenHexBoard();
 }
 
 chrome.runtime.sendMessage({action: "badgeUpdate", data: $("body").html()});
