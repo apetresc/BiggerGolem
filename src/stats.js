@@ -91,7 +91,7 @@ function statistics() {
       <div class="portlet-title">
         <div class="caption">
           <i class="fa fa-cogs"></i>
-          Statistics ${$('span.username').text()} vs. ${$($('.box.green tr').first().find('td')[0]).text()}
+          Statistics ${$('span.username').text()} vs. ${$($('.box.green tr').first().find('td')[1]).text()}
         </div>
         <div class="tools"> <a href="javascript:;" class="collapse" data-original-title="" title=""></a><a href="javascript:;" class="remove" data-original-title="" title=""></a>
         </div>
@@ -110,5 +110,4 @@ function statistics() {
         });
     })
 }
-
 

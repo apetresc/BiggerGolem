@@ -30,9 +30,9 @@
                 "src/shogi_piece_set.js",
                 "src/go_style.js",
                 "src/chess_style.js",
-                "src/stats.js",
                 "src/reversi_style.js",
                 "src/hex_style.js",
+                "src/stats.js",
                 "src/requests.js",
                 "src/options.js"
             ],
