@@ -1,36 +1,52 @@
 {
     "name": "Bigger Golem",
     "manifest_version": 2,
-    "version": "2.3.0",
+    "version": "2.4.0",
     "description": "An extension to enhance the Little Golem experience.",
     "applications": {
-      "gecko": {
-        "id": "BiggerGolem@apetre.sc"
-      }
+        "gecko": {
+            "id": "BiggerGolem@apetre.sc"
+        }
     },
     "background": {
-      "page" : "background.html"
+        "page": "background.html"
     },
     "options_ui": {
-      "page": "options.html",
-      "chrome_style": true
+        "page": "options.html",
+        "chrome_style": true
     },
     "browser_action": {
         "default_icon": "img/icons/golem32.png"
     },
     "content_scripts": [
         {
-            "matches": ["*://*.littlegolem.net/jsp/game/*"],
-            "js": ["lib/jquery-3.2.1.min.js", "src/shogi_piece_set.js",
-                   "src/go_style.js", "src/chess_style.js",
-                   "src/reversi_style.js", "src/hex_style.js", "src/requests.js", "src/options.js"],
+            "matches": [
+                "*://*.littlegolem.net/jsp/game/*",
+                "*://*.littlegolem.net/jsp/info/player_game_list.jsp?*",
+                "*://*.littlegolem.net/jsp/info/player.jsp?plid=*"
+            ],
+            "js": [
+                "lib/jquery-3.2.1.min.js",
+                "src/shogi_piece_set.js",
+                "src/go_style.js",
+                "src/chess_style.js",
+                "src/stats.js",
+                "src/reversi_style.js",
+                "src/hex_style.js",
+                "src/requests.js",
+                "src/options.js"
+            ],
             "run_at": "document_end"
         }
     ],
-    "web_accessible_resources": ["img/*"],
-    "icons": { "16":  "img/icons/golem16.png",
-               "48":  "img/icons/golem48.png",
-               "128": "img/icons/golem128.png" },
+    "web_accessible_resources": [
+        "img/*"
+    ],
+    "icons": {
+        "16": "img/icons/golem16.png",
+        "48": "img/icons/golem48.png",
+        "128": "img/icons/golem128.png"
+    },
     "permissions": [
         "storage",
         "https://littlegolem.net/*",
