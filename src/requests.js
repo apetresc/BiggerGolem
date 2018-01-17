@@ -17,7 +17,7 @@ if (game_name.indexOf("Reversi") >= 0) {
   });
 } else if (game_name.indexOf("Go") >= 0) {
   let size = 0;
-  if (game_name.indexOf("19x19") >= 0 || game_name.indexOf("Go100") >= 0) {
+  if (game_name.indexOf("19x19") >= 0 || game_name.indexOf("Random100") >= 0) {
     size = 19;
   } else if (game_name.indexOf("13x13") >= 0) {
     size = 13;
