@@ -8,6 +8,7 @@ Bigger Golem is an extension that aims to bring a variety of improvements to the
 - Configurable (and resizable) piece sets and board color for Reversi (contributed by [Trevor Cook](https://github.com/tdcook))
 - Coordinates for Go boards (contributed by [Mathijs Claassen](https://github.com/mathijsclaassen))
 - Fix for broken Hex board design scheme
+- Head-to-head statistics for every player (contributed by [Mathijs Claassen](https://github.com/mathijsclaassen))
 
 More features are under active development.
 
