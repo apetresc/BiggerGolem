@@ -1,4 +1,4 @@
-function show_scorebord() {
+function show_scoreboard() {
     var me = $('span.username').text();
     var win = 0, lost = 0, draw = 0, ongoing = 0;
     $.each($('div.portlet-body tr'), function (i, tr) {

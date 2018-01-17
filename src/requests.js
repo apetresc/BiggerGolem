@@ -1,6 +1,6 @@
 
 if ($('h2').text() == "List of games") {
-  show_scorebord();
+  show_scoreboard();
 } else if (document.location.pathname == "/jsp/info/player.jsp") {
   statistics()
 }
