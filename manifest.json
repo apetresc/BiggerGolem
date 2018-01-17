@@ -32,9 +32,19 @@
                 "src/chess_style.js",
                 "src/reversi_style.js",
                 "src/hex_style.js",
-                "src/stats.js",
                 "src/requests.js",
                 "src/options.js"
+            ],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "*://*.littlegolem.net/jsp/info/player_game_list.jsp?*",
+                "*://*.littlegolem.net/jsp/info/player.jsp?plid=*"
+            ],
+            "js": [
+                "lib/jquery-3.2.1.min.js",
+                "src/stats.js"
             ],
             "run_at": "document_end"
         }
