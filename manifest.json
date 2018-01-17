@@ -21,9 +21,7 @@
     "content_scripts": [
         {
             "matches": [
-                "*://*.littlegolem.net/jsp/game/*",
-                "*://*.littlegolem.net/jsp/info/player_game_list.jsp?*",
-                "*://*.littlegolem.net/jsp/info/player.jsp?plid=*"
+                "*://*.littlegolem.net/jsp/game/*"
             ],
             "js": [
                 "lib/jquery-3.2.1.min.js",
