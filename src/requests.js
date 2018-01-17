@@ -40,4 +40,6 @@ if (game_name.indexOf("Reversi") >= 0) {
   fixBrokenHexBoard();
 }
 
-chrome.runtime.sendMessage({ action: "badgeUpdate", data: $("body").html() });
+setTimeout(function() {
+  chrome.runtime.sendMessage({ action: "badgeUpdate", data: $("body").html() });
+}, 0);
