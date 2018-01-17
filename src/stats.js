@@ -24,6 +24,7 @@ function show_scoreboard() {
     }
   })
   if (lost + win + ongoing + draw > 0) {
+    var total = win + lost + draw;
     var markup = `
       <div class="portlet box yellow-casablanca">
         <div class="portlet-title">
@@ -36,9 +37,9 @@ function show_scoreboard() {
         </div>
         <div id="BiggerGolemStatistics" class="portlet-body">
           <table cellpadding="2" cellspacing="1" border="0" width="100%" align="center" bordercolor="white">
-            <tr><td>Wins: ${win} (${Math.round((win / (win + lost + draw) * 1000)) / 10}%)</td></tr>
-            <tr><td>Draws: ${draw} (${Math.round((draw / (win + lost + draw) * 1000)) / 10}%)</td></tr>
-            <tr><td>Losses: ${lost} (${Math.round((lost / (win + lost + draw) * 1000)) / 10}%)</td></tr>
+            <tr><td>Wins: ${win} ${total > 0 ? "(" + Math.round((win / total * 1000)) / 10 + "%)" : " "}</td></tr>
+            <tr><td>Draws: ${draw} ${total > 0 ? "(" + Math.round((draw / total * 1000)) / 10 + "%)" : " "}</td></tr>
+            <tr><td>Losses: ${lost} ${total > 0 ? "(" + Math.round((lost / total * 1000)) / 10 + "%)" : " "}</td></tr>
             <tr><td>Ongoing: ${ongoing}</td></tr>
           </table>
         </div>
@@ -77,9 +78,10 @@ function parseResults(data, url) {
       bg = '#fc9595'
     }
     var stats = "<td style=\"background-color: " + bg + "\"><a href=\"" + url + "\"> " + $(data).find('.caption').text().match(/\[.*?\]/g)[1] + "</a></td>"
-    stats += "<td>Wins: " + win + " ( " + Math.round((win / (win + lost + draw) * 1000)) / 10 + "%) </td>"
-    stats += "<td>Draws: " + draw + " ( " + Math.round((draw / (win + lost + draw) * 1000)) / 10 + "%) </td>"
-    stats += "<td>Losses: " + lost + " ( " + Math.round((lost / (win + lost + draw) * 1000)) / 10 + "%) </td>"
+    var total = win + lost + draw;
+    stats += "<td>Wins: " + win + (total > 0 ? " (" + Math.round((win / total * 1000)) / 10 + "%)" : "") + " </td>"
+    stats += "<td>Draws: " + draw + (total > 0 ? " (" + Math.round((draw / total * 1000)) / 10 + "%)" : "") + " </td>"
+    stats += "<td>Losses: " + lost + (total > 0 ? " (" + Math.round((lost / total * 1000)) / 10 + "%)" : "") + " </td>"
     stats += "<td>Ongoing: " + ongoing + "</td>"
     $('#BiggerGolemStatistics table').append('<tr align="right" bgcolor="#FFFFD5">' + stats + '</tr>');
   }
