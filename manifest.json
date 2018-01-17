@@ -30,8 +30,7 @@
                 "src/chess_style.js",
                 "src/reversi_style.js",
                 "src/hex_style.js",
-                "src/requests.js",
-                "src/options.js"
+                "src/requests.js"
             ],
             "run_at": "document_end"
         },
