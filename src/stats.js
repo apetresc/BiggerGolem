@@ -86,12 +86,18 @@ function parseResults(data, url) {
 }
 
 function statistics() {
+    var me = $('span.username').text();
+    var them = $($('.box.green tr').first().find('td')[1]).text();
+    if (me.replace(" ★", "") == them) {
+      return;
+    }
+
     var markup = `
     <div class="portlet box yellow-casablanca">
       <div class="portlet-title">
         <div class="caption">
           <i class="fa fa-cogs"></i>
-          Statistics ${$('span.username').text()} vs. ${$($('.box.green tr').first().find('td')[1]).text()}
+          Statistics ${me} vs. ${them}
         </div>
         <div class="tools"> <a href="javascript:;" class="collapse" data-original-title="" title=""></a><a href="javascript:;" class="remove" data-original-title="" title=""></a>
         </div>
