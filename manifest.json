@@ -25,7 +25,7 @@
             ],
             "js": [
                 "lib/jquery-3.2.1.min.js",
-                "src/shogi_piece_set.js",
+                "src/shogi_style.js",
                 "src/go_style.js",
                 "src/chess_style.js",
                 "src/reversi_style.js",

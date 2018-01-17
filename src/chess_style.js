@@ -1,4 +1,4 @@
-function chess_style(pieces, size) {
+function setChessStyle(pieces, size) {
   var pieceRegex = /^.*\/([wb][prnbqk])\.gif$/;
   var extension_prefix = chrome.extension.getURL('');
 

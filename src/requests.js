@@ -13,7 +13,7 @@ if (game_name.indexOf("Reversi") >= 0) {
   chrome.storage.local.get({
     'shogi_style': 'default'
   }, function (items) {
-    set_style(items.shogi_style);
+    setShogiStyle(items.shogi_style);
   });
 } else if (game_name.indexOf("Go") >= 0) {
   let size = 0;
@@ -26,7 +26,7 @@ if (game_name.indexOf("Reversi") >= 0) {
   }
   if (size > 0) {
     chrome.storage.local.get({ 'go_coordinates': false }, function (items) {
-      set_go_coordinates(items.go_coordinates, size);
+      setGoCoordinates(items.go_coordinates, size);
     });
   }
 } else if (game_name.indexOf("Chess") >= 0) {
@@ -34,7 +34,7 @@ if (game_name.indexOf("Reversi") >= 0) {
     'chess_pieces': 'default',
     'chess_size': '32'
   }, function (items) {
-    chess_style(items.chess_pieces, items.chess_size);
+    setChessStyle(items.chess_pieces, items.chess_size);
   });
 } else if (game_name.indexOf("Hex") >= 0) {
   fixBrokenHexBoard();

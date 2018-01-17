@@ -1,4 +1,4 @@
-function set_style(style) {
+function setShogiStyle(style) {
   if (style == "default") {
     return;
   }

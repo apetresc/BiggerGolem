@@ -1,4 +1,4 @@
-function set_go_coordinates(setCoordinates, size) {
+function setGoCoordinates(setCoordinates, size) {
     if (setCoordinates) {
         let num_size = parseInt(size)
         if (!isNaN(num_size)) {
