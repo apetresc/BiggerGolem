@@ -19,6 +19,17 @@
         "default_icon": "img/icons/golem32.png"
     },
     "content_scripts": [
+      {
+            "matches": [
+                "*://*.littlegolem.net/jsp/game/*",
+                "*://*.littlegolem.net/jsp/info/player_game_list.jsp?*",
+                "*://*.littlegolem.net/jsp/info/player.jsp?plid=*"
+            ],
+            "css": [
+              "css/blank.css"
+            ],
+            "run_at": "document_start"
+      },
         {
             "matches": [
                 "*://*.littlegolem.net/jsp/game/*",

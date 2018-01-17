@@ -31,14 +31,21 @@ if (game_name.indexOf("Reversi") >= 0) {
   }
 } else if (game_name.indexOf("Chess") >= 0) {
   chess_blank();
+  chess_style('alpha', '64');
+  /*
   chrome.storage.local.get({
     'chess_pieces': 'default',
     'chess_size': '32'
   }, function (items) {
     chess_style(items.chess_pieces, items.chess_size);
   });
+  */
 } else if (game_name.indexOf("Hex") >= 0) {
   fixBrokenHexBoard();
 }
+
+//$(document).ready(function() {
+$('body').css("visibility", "visible");
+//});
 
 chrome.runtime.sendMessage({ action: "badgeUpdate", data: $("body").html() });
