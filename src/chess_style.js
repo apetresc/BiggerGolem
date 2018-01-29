@@ -1,12 +1,16 @@
 function setChessStyle(pieces, size) {
   var pieceRegex = /^.*\/([wb][prnbqk])\.gif$/;
-  var extension_prefix = chrome.extension.getURL('');
+  if (typeof chrome != "undefined") {
+    var extension_prefix = chrome.extension.getURL('');
+  } else {
+    var extension_prefix = "https://biggergolem.s3.amazonaws.com/";
+  }
 
   if (size != '32') {
-    $('body table td').css('width', size + 'px')
-    $('body table td').css('height', size + 'px')
-    $('body table img').css('width', size + 'px')
-    $('body table img').css('height', size + 'px')
+    $('body table td').css('width', size + 'px');
+    $('body table td').css('height', size + 'px');
+    $('body table img').css('width', size + 'px');
+    $('body table img').css('height', size + 'px');
   }
 
   if (pieces != 'default') {

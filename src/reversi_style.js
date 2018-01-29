@@ -1,4 +1,10 @@
 function setReversiStyle({ background, pieces, size }) {
+  if (typeof chrome != "undefined") {
+    var extension_prefix = chrome.extension.getURL('');
+  } else {
+    var extension_prefix = "https://biggergolem.s3.amazonaws.com/";
+  }
+  
   var lastMove = $("table[bordercolor] td[bgcolor='#FF9115']");
   var lastMoveImg = $("table[bordercolor] td[bgcolor='#FF9115'] img");
   if (background) {
@@ -25,7 +31,7 @@ function setReversiStyle({ background, pieces, size }) {
     $('body table img').each(function(i, element) {
       const color = element.getAttribute('alt');
       if (color && color.length > 0) {
-        element.src = chrome.extension.getURL(`img/reversi/${color.toLowerCase()}.svg`);
+        element.src = extension_prefix + `img/reversi/${color.toLowerCase()}.svg`;
       }
     });
   }
