@@ -3,7 +3,11 @@ function setShogiStyle(style) {
     return;
   }
 
-  var extension_prefix = chrome.extension.getURL('');
+  if (typeof chrome != "undefined") {
+    var extension_prefix = chrome.extension.getURL('');
+  } else {
+    var extension_prefix = "https://biggergolem.s3.amazonaws.com/";
+  }
   
   $("div.col-md-12 div").each(function(i) {
       var piece_pos = this.style.backgroundImage.search(/shogi\d\d/);
