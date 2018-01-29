@@ -7,5 +7,5 @@ greasemonkey/lg.js:
 all: BiggerGolem.zip greasemonkey/lg.js
 
 clean:
-	rm BiggerGolem.zip
-	rm greasemonkey/lg.js
+	rm -f BiggerGolem.zip
+	rm -f greasemonkey/lg.js
