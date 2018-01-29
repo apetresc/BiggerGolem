@@ -4,7 +4,7 @@
 // @version      2.5.0
 // @description  Bigger Golem brings a variety of improvements to the popular turn-based board game site Little Golem
 // @author       Adrian Petrescu <apetresc@gmail.com>
-// @match        http*://www.littlegolem.net/*
+// @include      /^https?:\/\/(?:www\.)?littlegolem\.net\/jsp\/game\/game\.jsp.*$/
 // @run-at       document-end
 // @grant        none
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
