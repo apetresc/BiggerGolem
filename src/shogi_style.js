@@ -29,5 +29,43 @@ function setShogiStyle(style) {
 }
 
 function fixShogiPgn() {
-  $('.caption:contains(Move List) + .actions a').attr("download", "test.pgn").attr('href', 'data:application/x-chess-pgn;base64,W0V2ZW50ICJGL1MgUmV0dXJuIE1hdGNoIl0NCltTaXRlICJCZWxncmFkZSwgU2VyYmlhIEpVRyJdDQpbRGF0ZSAiMTk5Mi4xMS4wNCJdDQpbUm91bmQgIjI5Il0NCltXaGl0ZSAiRmlzY2hlciwgUm9iZXJ0IEouIl0NCltCbGFjayAiU3Bhc3NreSwgQm9yaXMgVi4iXQ0KW1Jlc3VsdCAiMS8yLTEvMiJdDQoNCjEuIGU0IGU1IDIuIE5mMyBOYzYgMy4gQmI1IGE2IHtUaGlzIG9wZW5pbmcgaXMgY2FsbGVkIHRoZSBSdXkgTG9wZXoufQ0KNC4gQmE0IE5mNiA1LiBPLU8gQmU3IDYuIFJlMSBiNSA3LiBCYjMgZDYgOC4gYzMgTy1PIDkuIGgzIE5iOCAxMC4gZDQgTmJkNw0KMTEuIGM0IGM2IDEyLiBjeGI1IGF4YjUgMTMuIE5jMyBCYjcgMTQuIEJnNSBiNCAxNS4gTmIxIGg2IDE2LiBCaDQgYzUgMTcuIGR4ZTUNCk54ZTQgMTguIEJ4ZTcgUXhlNyAxOS4gZXhkNiBRZjYgMjAuIE5iZDIgTnhkNiAyMS4gTmM0IE54YzQgMjIuIEJ4YzQgTmI2DQoyMy4gTmU1IFJhZTggMjQuIEJ4ZjcrIFJ4ZjcgMjUuIE54ZjcgUnhlMSsgMjYuIFF4ZTEgS3hmNyAyNy4gUWUzIFFnNSAyOC4gUXhnNQ0KaHhnNSAyOS4gYjMgS2U2IDMwLiBhMyBLZDYgMzEuIGF4YjQgY3hiNCAzMi4gUmE1IE5kNSAzMy4gZjMgQmM4IDM0LiBLZjIgQmY1DQozNS4gUmE3IGc2IDM2LiBSYTYrIEtjNSAzNy4gS2UxIE5mNCAzOC4gZzMgTnhoMyAzOS4gS2QyIEtiNSA0MC4gUmQ2IEtjNSA0MS4gUmE2DQpOZjIgNDIuIGc0IEJkMyA0My4gUmU2IDEvMi0xLzI=')
+  function convertToPsn(moves) {
+    function convertCoords(lgCoords) {
+      return String.fromCharCode(106 - parseInt(lgCoords[0])) + (106 - lgCoords.charCodeAt(1));
+    }
+
+    var psn = ""
+    psn += "[Event \"Little Golem Game\"]\n";
+    psn += "[Site \"littlegolem.net\"]\n";
+    psn += "[Date \"2018.02.05\"]\n";
+    psn += "[White \"-\"]\n";
+    psn += "[Black \"-\"]\n";
+    psn += "[Result \"*\"]\n";
+    psn += "[Variant \"shogi\"]\n";
+    psn += "\n";
+
+    var num_moves = moves.length;
+    var move_num = 1;
+    var move_len = 1;
+    for (var i = 0; i < num_moves; i++) {
+      if (i % 2 == 0) {
+        psn += move_num + '. ';
+        move_num++;
+      } else {
+        move_len = ('' + (i + 1)).length;
+      }
+      if (moves[i].indexOf('-') > 0) {
+        psn += moves[i][move_len + 1] + convertCoords(moves[i].substring(move_len + 2, move_len + 4)) + convertCoords(moves[i].substring(move_len + 5, move_len + 7)) + moves[i].substring(move_len + 7) + ' ';
+      } else {
+        psn += moves[i][move_len + 1] + '@' + convertCoords(moves[i].substring(move_len + 2, move_len + 4)) + moves[i].substring(move_len + 4) + ' ';
+      }
+    }
+
+    console.log(psn);
+    return btoa(psn);
+  }
+
+  $('.caption:contains(Move List) + .actions a')
+      .attr("download", "test.psn")
+      .attr('href', 'data:application/x-shogi-psn;base64,' + convertToPsn($('.caption:contains(Move List)').parents('.portlet').find('.portlet-body a,span').map(function(x) { return $(this).text(); }).get()));
 }
