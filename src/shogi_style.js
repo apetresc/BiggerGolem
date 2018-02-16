@@ -47,18 +47,34 @@ function fixShogiPgn() {
     var num_moves = moves.length;
     var move_num = 1;
     var move_len = 1;
+    var promoted_pieces = new Set([]);
     for (var i = 0; i < num_moves; i++) {
+      var promoted_move = false;
       if (i % 2 == 0) {
         psn += move_num + '. ';
         move_num++;
       } else {
         move_len = ('' + (i + 1)).length;
       }
+      
       if (moves[i].indexOf('-') > 0) {
-        psn += moves[i][move_len + 1] + convertCoords(moves[i].substring(move_len + 2, move_len + 4)) + convertCoords(moves[i].substring(move_len + 5, move_len + 7)) + moves[i].substring(move_len + 7) + ' ';
+        if (promoted_pieces.has(moves[i].substring(move_len + 5, move_len + 7))) {
+          promoted_pieces.delete(moves[i].substring(move_len + 5, move_len + 7));
+        }
+        if (promoted_pieces.has(moves[i].substring(move_len + 2, move_len + 4))) {
+          promoted_move = true;
+          promoted_pieces.delete(moves[i].substring(move_len + 2, move_len + 4));
+          promoted_pieces.add(moves[i].substring(move_len + 5, move_len + 7));
+        }
+
+        psn += (promoted_move ? '+' : '') + moves[i][move_len + 1] + convertCoords(moves[i].substring(move_len + 2, move_len + 4)) + convertCoords(moves[i].substring(move_len + 5, move_len + 7)) + moves[i].substring(move_len + 7) + ' ';
       } else {
         psn += moves[i][move_len + 1] + '@' + convertCoords(moves[i].substring(move_len + 2, move_len + 4)) + moves[i].substring(move_len + 4) + ' ';
       }
+      if (moves[i].endsWith("+")) {
+        promoted_pieces.add(moves[i].substring(move_len + 5, move_len + 7));
+      }
+      promoted_move = false;
     }
 
     console.log(psn);
