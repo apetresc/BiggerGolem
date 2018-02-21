@@ -82,6 +82,6 @@ function fixShogiPgn() {
   }
 
   $('.caption:contains(Move List) + .actions a')
-      .attr("download", "test.psn")
-      .attr('href', 'data:application/x-shogi-psn;base64,' + convertToPsn($('.caption:contains(Move List)').parents('.portlet').find('.portlet-body a,span').map(function(x) { return $(this).text(); }).get()));
+      .attr("download", "game" + URLSearchParams(window.location.search).get("gid") + ".pgn")
+      .attr('href', 'data:application/x-shogi-pgn;base64,' + convertToPsn($('.caption:contains(Move List)').parents('.portlet').find('.portlet-body a,span').map(function(x) { return $(this).text(); }).get()));
 }
