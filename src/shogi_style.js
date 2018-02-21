@@ -77,11 +77,11 @@ function fixShogiPgn() {
       promoted_move = false;
     }
 
-    console.log(psn);
+    // console.log(psn);
     return btoa(psn);
   }
 
   $('.caption:contains(Move List) + .actions a')
-      .attr("download", "game" + URLSearchParams(window.location.search).get("gid") + ".pgn")
+      .attr("download", "game" + new URLSearchParams(window.location.search).get("gid") + ".pgn")
       .attr('href', 'data:application/x-shogi-pgn;base64,' + convertToPsn($('.caption:contains(Move List)').parents('.portlet').find('.portlet-body a,span').map(function(x) { return $(this).text(); }).get()));
 }
