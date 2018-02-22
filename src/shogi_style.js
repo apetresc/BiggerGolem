@@ -34,12 +34,17 @@ function fixShogiPgn() {
       return String.fromCharCode(106 - parseInt(lgCoords[0])) + (106 - lgCoords.charCodeAt(1));
     }
 
+    var players = $('.portlet.box.yellow .portlet-body .col-xs-6.col-md-6 a')
+
     var psn = ""
     psn += "[Event \"Little Golem Game\"]\n";
     psn += "[Site \"littlegolem.net\"]\n";
     psn += "[Date \"2018.02.05\"]\n";
-    psn += "[White \"-\"]\n";
-    psn += "[Black \"-\"]\n";
+    // I am fully aware that technically the colors are flipped here. However,
+    // xboard interprets "white" as the first player and "black" as the second
+    // player, even in shogi, so this is the best way to match that.
+    psn += "[White \"" + players[0].text.replace(" ★", "") + "\"]\n";
+    psn += "[Black \"" + players[1].text.replace(" ★", "") + "\"]\n";
     psn += "[Result \"*\"]\n";
     psn += "[Variant \"shogi\"]\n";
     psn += "\n";
@@ -56,7 +61,7 @@ function fixShogiPgn() {
       } else {
         move_len = ('' + (i + 1)).length;
       }
-      
+
       if (moves[i].indexOf('-') > 0) {
         if (promoted_pieces.has(moves[i].substring(move_len + 5, move_len + 7))) {
           promoted_pieces.delete(moves[i].substring(move_len + 5, move_len + 7));
