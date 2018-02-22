@@ -1,5 +1,5 @@
 function setReversiStyle({ background, pieces, size }) {
-  if (typeof chrome != "undefined") {
+  if (typeof chrome != "undefined" && typeof chrome.extension != "undefined") {
     var extension_prefix = chrome.extension.getURL('');
   } else {
     var extension_prefix = "https://biggergolem.s3.amazonaws.com/";

@@ -38,7 +38,7 @@ var REVERSI_SIZE = "64";
 
 function setChessStyle(pieces, size) {
   var pieceRegex = /^.*\/([wb][prnbqk])\.gif$/;
-  if (typeof chrome != "undefined") {
+  if (typeof chrome != "undefined" && typeof chrome.extension != "undefined") {
     var extension_prefix = chrome.extension.getURL('');
   } else {
     var extension_prefix = "https://biggergolem.s3.amazonaws.com/";
@@ -82,7 +82,7 @@ function setShogiStyle(style) {
     return;
   }
 
-  if (typeof chrome != "undefined") {
+  if (typeof chrome != "undefined" && typeof chrome.extension != "undefined") {
     var extension_prefix = chrome.extension.getURL('');
   } else {
     var extension_prefix = "https://biggergolem.s3.amazonaws.com/";
@@ -170,7 +170,7 @@ function fixShogiPgn() {
       .attr('href', 'data:application/x-shogi-pgn;base64,' + convertToPsn($('.caption:contains(Move List)').parents('.portlet').find('.portlet-body a,span').map(function(x) { return $(this).text(); }).get()));
 }
 function setReversiStyle({ background, pieces, size }) {
-  if (typeof chrome != "undefined") {
+  if (typeof chrome != "undefined" && typeof chrome.extension != "undefined") {
     var extension_prefix = chrome.extension.getURL('');
   } else {
     var extension_prefix = "https://biggergolem.s3.amazonaws.com/";
