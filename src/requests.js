@@ -15,6 +15,9 @@ if (game_name.indexOf('Reversi') >= 0) {
     'shogi_style': 'default'
   }, function (items) {
     setShogiStyle(items.shogi_style);
+    setTimeout(function() {
+      fixShogiPgn();
+    }, 600);
   });
 } else if (game_name.indexOf('Go') >= 0) {
   let size = 0;

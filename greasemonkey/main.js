@@ -1,8 +1,8 @@
 (function() {
     'use strict';
-    
+
     var game_name = $('h3.page-title').text();
-    
+
     if (game_name.indexOf('Reversi') >= 0) {
         setReversiStyle({
             background: REVERSI_BACKGROUND,
@@ -11,6 +11,9 @@
         });
     } else if (game_name.indexOf('Shogi') >= 0) {
         setShogiStyle(SHOGI_STYLE);
+        setTimeout(function() {
+          fixShogiPgn();
+        }, 600);
     } else if (game_name.indexOf('Go') >= 0) {
         let size = 0;
         if (game_name.indexOf('19x19') >= 0 || game_name.indexOf('Random100') >= 0) {
