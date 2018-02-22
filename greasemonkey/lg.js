@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BiggerGolem
 // @namespace    http://github.com/apetresc
-// @version      2.5.0
+// @version      2.6.0
 // @description  Bigger Golem brings a variety of improvements to the popular turn-based board game site Little Golem
 // @author       Adrian Petrescu <apetresc@gmail.com>
 // @include      /^https?:\/\/(?:www\.)?littlegolem\.net\/jsp\/game\/game\.jsp.*$/
@@ -9,7 +9,6 @@
 // @grant        none
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // ==/UserScript==
-
 // =========================== CONFIGURATION ===================================
 
 // CHES_STYLE: Set a custom piece set for Chess and Chess960 games.
