@@ -8,7 +8,7 @@ var CHESS_STYLE = "alpha";
 var CHESS_SIZE = "64";
 
 // SHOGI_STYLE: Set a custom piece set for Shogi games.
-// Valid values: ["Ryoko", "Kinki", "default"]
+// Valid values: ["Ryoko", "Kinki", "Hidetchi", "default"]
 var SHOGI_STYLE = "Ryoko";
 
 // GO_COORDINATES: If true, draw coordinates around Go games of all board sizes

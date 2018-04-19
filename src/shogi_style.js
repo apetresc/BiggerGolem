@@ -13,7 +13,7 @@ function setShogiStyle(style) {
       var piece_pos = this.style.backgroundImage.search(/shogi\d\d/);
       if (piece_pos >= 0) {
           var piece = this.style.backgroundImage.substr(piece_pos, 7);
-          this.style.backgroundImage = "url(" + extension_prefix + "img/shogi/kanji/" + style + "/" + piece + ".png" + ")";
+          this.style.backgroundImage = "url(" + extension_prefix + "img/shogi/" + style + "/" + piece + ".png" + ")";
           this.style.height = "48px";
       }
   });
@@ -23,7 +23,7 @@ function setShogiStyle(style) {
     var piece_pos = this.src.search(/shogi\d\d/);
     if (piece_pos >= 0) {
         var piece = this.src.substr(piece_pos, 7);
-        this.src = extension_prefix + "img/shogi/kanji/" + style + "/" + piece + ".png";
+        this.src = extension_prefix + "img/shogi/" + style + "/" + piece + ".png";
     }
   });
 }

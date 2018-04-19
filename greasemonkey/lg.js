@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BiggerGolem
 // @namespace    http://github.com/apetresc
-// @version      2.6.0
+// @version      2.7.0
 // @description  Bigger Golem brings a variety of improvements to the popular turn-based board game site Little Golem
 // @author       Adrian Petrescu <apetresc@gmail.com>
 // @include      /^https?:\/\/(?:www\.)?littlegolem\.net\/jsp\/game\/game\.jsp.*$/
@@ -19,7 +19,7 @@ var CHESS_STYLE = "alpha";
 var CHESS_SIZE = "64";
 
 // SHOGI_STYLE: Set a custom piece set for Shogi games.
-// Valid values: ["Ryoko", "Kinki", "default"]
+// Valid values: ["Ryoko", "Kinki", "Hidetchi", "default"]
 var SHOGI_STYLE = "Ryoko";
 
 // GO_COORDINATES: If true, draw coordinates around Go games of all board sizes
@@ -92,7 +92,7 @@ function setShogiStyle(style) {
       var piece_pos = this.style.backgroundImage.search(/shogi\d\d/);
       if (piece_pos >= 0) {
           var piece = this.style.backgroundImage.substr(piece_pos, 7);
-          this.style.backgroundImage = "url(" + extension_prefix + "img/shogi/kanji/" + style + "/" + piece + ".png" + ")";
+          this.style.backgroundImage = "url(" + extension_prefix + "img/shogi/" + style + "/" + piece + ".png" + ")";
           this.style.height = "48px";
       }
   });
@@ -102,7 +102,7 @@ function setShogiStyle(style) {
     var piece_pos = this.src.search(/shogi\d\d/);
     if (piece_pos >= 0) {
         var piece = this.src.substr(piece_pos, 7);
-        this.src = extension_prefix + "img/shogi/kanji/" + style + "/" + piece + ".png";
+        this.src = extension_prefix + "img/shogi/" + style + "/" + piece + ".png";
     }
   });
 }
