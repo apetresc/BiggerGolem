@@ -38,3 +38,29 @@ function fixBrokenHexBoard() {
 
   $('svg').html($('svg').html());
 }
+
+function fixHexSgf() {
+  function convertToSgf(moves) {
+    var players = $('.portlet.box.yellow .portlet-body .col-xs-6.col-md-6 a')
+    
+    var sgf = "(;FF[4]PB[" +
+      players[0].text.replace(" ★", "") +
+      "]PW[" +
+      players[1].text.replace(" ★", "") +
+      "]SZ[" +
+      /Hex-Size (\d+)/.exec($(".page-title").text())[1] +
+      "]SO[http://www.littlegolem.com]"
+      
+      for (var i = 0; i < moves.length; i++) {
+        sgf += ";" + (i % 2 == 0 ? "B" : "W") + "[" + moves[i].substring(moves[i].indexOf(".") + 1) + "]";
+      }
+      
+      sgf += ")";
+      
+      return btoa(sgf);
+  }
+  
+  $('.caption:contains(Move List) + .actions a')
+      .attr('download', 'game' + new URLSearchParams(window.location.search).get("gid") + ".hsgf")
+      .attr('href', 'data:application/x-hex-sgf;base64,' + convertToSgf($('.caption:contains(Move List)').parents('.portlet').find('.portlet-body a,span').map(function(x) { return $(this).text(); }).get()));
+}
