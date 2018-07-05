@@ -30,5 +30,8 @@
         setChessStyle(CHESS_STYLE, CHESS_SIZE);
     } else if (game_name.indexOf('Hex') >= 0) {
         fixBrokenHexBoard();
+        setTimeout(function() {
+          fixHexSgf();
+        }, 600);
     }
 })();
