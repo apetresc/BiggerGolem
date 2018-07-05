@@ -253,6 +253,46 @@ function fixBrokenHexBoard() {
 
   $('svg').html($('svg').html());
 }
+
+function fixHexSgf() {
+  function convertToSgf(moves) {
+    var players = $('.portlet.box.yellow .portlet-body .col-xs-6.col-md-6 a')
+    
+    var sgf = "(;FF[4]PB[" +
+      players[0].text.replace(" ★", "") +
+      "]PW[" +
+      players[1].text.replace(" ★", "") +
+      "]SZ[" +
+      /Hex.*-Size (\d+)/.exec($(".page-title").text())[1] +
+      "]SO[http://www.littlegolem.com]";
+    var swap = 0;
+
+    if (moves.length > 1 && moves[1].indexOf('swap') >= 0) {
+      // This is a hack to deal with the fact that none of the Hex SGF editors I've ever seen properly
+      // implement swap-pieces. So we just hardcode the swap into the SGF.
+      swap = 1;
+    }
+      
+    for (var i = 0; i < moves.length; i++) {
+      console.log(i);
+      if (swap == 1 && i == 0) {
+        sgf += ";" + "W[" + String.fromCharCode('a'.charCodeAt(0) + (moves[0][3].charCodeAt(0) - '1'.charCodeAt(0))) + (moves[0][2].charCodeAt(0) - 'a'.charCodeAt(0) + 1) + "]" +
+          "C[This was actually a swap move played by black]";
+        i += 1;
+      } else {
+        sgf += ";" + (i % 2 == 0 ? "B" : "W") + "[" + moves[i].substring(moves[i].indexOf(".") + 1) + "]";
+      }
+    }
+    
+    sgf += ")";
+    
+    return btoa(sgf);
+  }
+  
+  $('.caption:contains(Move List) + .actions a')
+      .attr('download', 'game' + new URLSearchParams(window.location.search).get("gid") + ".hsgf")
+      .attr('href', 'data:application/x-hex-sgf;base64,' + convertToSgf($('.caption:contains(Move List)').parents('.portlet').find('.portlet-body a,span').map(function(x) { return $(this).text(); }).get()));
+}
 (function() {
     'use strict';
 
@@ -285,5 +325,8 @@ function fixBrokenHexBoard() {
         setChessStyle(CHESS_STYLE, CHESS_SIZE);
     } else if (game_name.indexOf('Hex') >= 0) {
         fixBrokenHexBoard();
+        setTimeout(function() {
+          fixHexSgf();
+        }, 600);
     }
 })();

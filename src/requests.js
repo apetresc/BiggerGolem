@@ -42,6 +42,9 @@ if (game_name.indexOf('Reversi') >= 0) {
   });
 } else if (game_name.indexOf('Hex') >= 0) {
   fixBrokenHexBoard();
+  setTimeout(function() {
+    fixHexSgf();
+  }, 600);
 }
 
 setTimeout(function() {
