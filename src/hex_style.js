@@ -59,9 +59,8 @@ function fixHexSgf() {
     }
       
     for (var i = 0; i < moves.length; i++) {
-      console.log(i);
       if (swap == 1 && i == 0) {
-        sgf += ";" + "W[" + String.fromCharCode('a'.charCodeAt(0) + (moves[0][3].charCodeAt(0) - '1'.charCodeAt(0))) + (moves[0][2].charCodeAt(0) - 'a'.charCodeAt(0) + 1) + "]" +
+        sgf += ";" + "W[" + String.fromCharCode('a'.charCodeAt(0) + parseInt(moves[0].substring(3)) - 1) + (moves[0][2].charCodeAt(0) - 'a'.charCodeAt(0) + 1) + "]" +
           "C[This was actually a swap move played by black]";
         i += 1;
       } else {
