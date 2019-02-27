@@ -1,74 +1,78 @@
 <html>
 
 <head>
-    <title>BiggerGolem Options</title>
-    <meta charset="utf-8" />
-    <style>
-      form {
-        margin: 0;
-      }
-      fieldset {
-        margin-bottom: 1em;
-        padding: .8em .8em 1em;
-      }
-      legend {
-        font-size: .8em;
-        font-weight: bold;
-        background: #ccc;
-      }
-      #status {
-        margin-left: 1em;
-        font-size: 1.2em;
-      }
-    </style>
+  <title>BiggerGolem Options</title>
+  <meta charset="utf-8" />
+  <style>
+    form {
+      margin: 0;
+    }
+
+    fieldset {
+      margin-bottom: 1em;
+      padding: .8em .8em 1em;
+    }
+
+    legend {
+      font-size: .8em;
+      font-weight: bold;
+      background: #ccc;
+    }
+
+    #status {
+      margin-left: 1em;
+      font-size: 1.2em;
+    }
+  </style>
 </head>
 
 <body>
-    <script src="lib/jquery-3.2.1.min.js"></script>
-    <fieldset>
-        <legend>Shogi Piece Set</legend>
-        <select id="style">
-	    <option value="default">Default</option>
-	    <option value="Ryoko">Ryoko</option>
-	    <option value="Kinki">Kinki</option>
-        <option value="Hidetchi">Hidetchi (Western)</option>
-	</select>
-    </fieldset>
+  <script src="lib/jquery-3.2.1.min.js"></script>
 
-    <fieldset>
-        <legend>Chess Piece Set</legend>
-        <select id="chess_pieces">
-	    <option value="default">Default</option>
-	    <option value="alpha">Alpha</option>
-	</select>
+  <fieldset>
+    <legend>Shogi Piece Set</legend>
+    <select id="style">
+      <option value="default">Default</option>
+      <option value="Ryoko">Ryoko</option>
+      <option value="Kinki">Kinki</option>
+      <option value="Hidetchi">Hidetchi (Western)</option>
+    </select>
+  </fieldset>
+
+  <fieldset>
+    <legend>Chess Piece Set</legend>
+    <select id="chess_pieces">
+      <option value="default">Default</option>
+      <option value="alpha">Alpha</option>
+    </select>
+    <br />
+    Size: <input type="text" id="chess_size" value="32" />
+  </fieldset>
+
+  <fieldset>
+    <legend>Reversi Board Options</legend>
+    <form id="reversi">
+      <label>Pieces:
+        <select name="pieces">
+          <option value="default">Default</option>
+          <option value="go">Go pieces</option>
+          <option value="svg">SVG</option>
+        </select>
+      </label>
+      <label>Size: <input type="text" name="size" value="32" size="2" /></label>
       <br />
-      Size: <input type="text" id="chess_size" value="32" />
-    </fieldset>
+      <label><input type="checkbox" name="green" />Green background</label>
+    </form>
+  </fieldset>
 
-    <fieldset>
-        <legend>Reversi Board Options</legend>
-        <form id="reversi">
-            <label>Pieces:
-                <select name="pieces">
-                    <option value="default">Default</option>
-                    <option value="go">Go pieces</option>
-                    <option value="svg">SVG</option>
-                </select>
-            </label>
-            <label>Size: <input type="text" name="size" value="32" size="2" /></label>
-            <br />
-            <label><input type="checkbox" name="green" />Green background</label>
-        </form>
-    </fieldset>
+  <fieldset>
+    <legend>Go Board Options</legend>
+    <form id="go">
+      <label><input type="checkbox" name="coordinates" />Show coordinates</label>
+    </form>
+  </fieldset>
 
-    <fieldset>
-        <legend>Go Board Options</legend>
-        <form id="go">
-          <label><input type="checkbox" name="coordinates" />Show coordinates</label>
-        </form>
-    </fieldset>
-
-    <button id="save-options">Save</button><span id="status"></span>
+  <button id="save-options">Save</button><span id="status"></span>
 </body>
 <script src="/src/options.js"></script>
 
