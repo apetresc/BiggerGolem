@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BiggerGolem
 // @namespace    http://github.com/apetresc
-// @version      2.8.1
+// @version      2.8.2
 // @description  Bigger Golem brings a variety of improvements to the popular turn-based board game site Little Golem
 // @author       Adrian Petrescu <apetresc@gmail.com>
 // @include      /^https?:\/\/(?:www\.)?littlegolem\.net\/jsp\/game\/game\.jsp.*$/
