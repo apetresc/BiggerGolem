@@ -2,9 +2,9 @@ function show_scoreboard() {
   var me = $('span.username').text();
   var win = 0, lost = 0, draw = 0, ongoing = 0;
   $.each($('div.portlet-body tr'), function (i, tr) {
-    var opponent = $($(tr).find('td')[1]).text()
+    var opponent = $($(tr).find('td')[1]).text().trim()
     if (opponent == me) {
-      switch ($($(tr).find('td')[5]).text()) {
+      switch ($($(tr).find('td')[5]).text().trim()) {
         case 'win':
         lost++;
         $(tr).css('background-color', '#fc9595');
